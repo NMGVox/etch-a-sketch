@@ -6,10 +6,23 @@
     <title>Etch-A-Sketch</title>
 </head>
 <body>
-    <section class="square-container">
-        <div></div>
+    <section class="main-container">
+        <div class = "tool-container">
+            <h2>Tools</h2>
+            <div class="toolbox">
+                <!--Range controls, color picker, etc-->
+                <div class="slider-container">
+                    <h3 class="slider-label">16x16</h3>
+                    <input type="range" max="100" min="1" value="16" class="grid-slider">
+                    <input type="button" id="grid-change" value="Apply New Grid"></input>
+                </div>
+            </div>
+        </div>
+        
+        <section class="square-container">
+            <div></div>
+        </section>
     </section>
-
     <script src="./script.js"></script>
 </body>
 </html>
