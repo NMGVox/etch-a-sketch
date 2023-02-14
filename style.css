@@ -8,7 +8,7 @@ body{
     align-items: center;
 }
 
-.container{
+.square-container{
     background-color: rgba(172, 192, 185, 0.753);
     height:600px;
     width:600px;
@@ -30,4 +30,9 @@ body{
     margin:0px;
     padding:0px;
     box-sizing: border-box;
+}
+
+.paint-square.fill{
+    background-color: black;
+    border-style: none;
 }

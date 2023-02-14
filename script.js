@@ -2,7 +2,7 @@ let gridsize = 16;
 let grid_arr = [];
 
 function fill(e){
-    console.log(this.value);
+    this.classList.add("fill");
 }
 
 for(let i = 0; i < 16 * 16; i++){
@@ -11,7 +11,7 @@ for(let i = 0; i < 16 * 16; i++){
     grid_arr[i].value = i;
 }
 
-let container = document.querySelector('.container');
+let container = document.querySelector('.square-container');
 grid_arr.forEach(element => {
     container.appendChild(element);
 });
