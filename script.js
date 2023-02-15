@@ -1,15 +1,25 @@
 //TODO remove all child nodes from .square container *Done
 //Add color picker *Done
 //Make a clear button
-//Shade functionality
+//Shade functionality *Kinda Done?
 //Bonus: Make app behave like a brush instead of only mouseover. (push and drag to draw)
+//
 
 let gridsize = 16;
 let grid_arr = [];
 let rainbow_arr = [];
 let rainbow = false;
 let eraser = false;
+let shader = false;
+let pen = false;
+let container = document.querySelector('.square-container');
 
+let toggleShader = () =>{
+    shader = !shader;
+    if(rainbow){rainbow = false;}
+    console.log(shader);
+    return;
+}
 
 let toggleEraser = () =>{
     eraser = !eraser;
@@ -17,9 +27,22 @@ let toggleEraser = () =>{
     return;
 }
 
+let disablePen = () => {
+    pen = false;
+    console.log(pen);
+    return;
+}
+
+let activatePen = () => {
+    pen = true;
+    console.log(pen);
+    return;
+}
+
 let toggleRainbow = () =>{
     rainbow = !rainbow;
     if(rainbow){
+        if(shader) {shader = false;}
         rainbow_arr = ["red", "blue", "yellow", "purple", "green", "orange", "indigo", "turquoise"];
         return;
     }
@@ -28,18 +51,36 @@ let toggleRainbow = () =>{
 }
 
 function fill(e){
-    if(eraser){
-        this.classList.remove("fill");
-        this.style.backgroundColor = "white";
-        return;
+    //console.log(this.style.backgroundColor.substr(0, 14));
+    if(pen){
+        if(eraser){
+            this.classList.remove("fill");
+            this.style.backgroundColor = "white";
+            return;
+        }
+        //this.classList.add("fill")
+        if(shader){
+            if(this.style.backgroundColor.substr(this.style.backgroundColor.indexOf("("), 8) == "(0, 0, 0"){
+                let alpha = +(this.style.backgroundColor.substring(14, this.style.backgroundColor.length-1));
+                console.log(alpha);
+                if(alpha !== 1){
+                    this.style.backgroundColor = `rgba(0, 0, 0, ${alpha + 0.1})`;
+                    return;
+                }
+                console.log("?");
+            }
+            else{
+                this.style.backgroundColor = `rgba(0, 0, 0, .1)`;
+            }
+            return;
+        }
+        if(rainbow){
+            //this.style.backgroundColor = "#" + Math.floor(Math.random()*0xFFFFFF).toString(16);
+            this.style.backgroundColor = rainbow_arr[Math.floor(Math.random() * 8)];
+            return;
+        }
+        this.style.backgroundColor = brush;
     }
-    this.classList.add("fill")
-    if(rainbow){
-        //this.style.backgroundColor = "#" + Math.floor(Math.random()*0xFFFFFF).toString(16);
-        this.style.backgroundColor = rainbow_arr[Math.floor(Math.random() * 8)];
-        return;
-    }
-    this.style.backgroundColor = brush;
     return;
 }
 
@@ -73,7 +114,7 @@ function initializeGrid(){
         grid_arr[i].classList.add("paint-square");
         grid_arr[i].value = i;
     }
-    let container = document.querySelector('.square-container');
+    
     removeAllSquares(container);
     let dimension = 600/gridsize;
     grid_arr.forEach(element => {
@@ -91,6 +132,8 @@ function initializeGrid(){
 
 initializeGrid();
 
+container.addEventListener('mousedown', activatePen); 
+window.addEventListener('mouseup', disablePen);
 
 let grid_slider = document.querySelector(".grid-slider");
 grid_slider.addEventListener("input", changeGridSize);
@@ -107,4 +150,8 @@ rainbtn.addEventListener('click', toggleRainbow);
 
 let erasebtn = document.querySelector("#eraser");
 erasebtn.addEventListener('click', toggleEraser);
+
+let shaderbtn = document.querySelector("#shader");
+shaderbtn.addEventListener('click', toggleShader);
+
 
