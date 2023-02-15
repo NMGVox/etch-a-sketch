@@ -1,35 +1,58 @@
 //TODO remove all child nodes from .square container *Done
-//Add color picker
+//Add color picker *Done
 //Make a clear button
 //Shade functionality
 //Bonus: Make app behave like a brush instead of only mouseover. (push and drag to draw)
 
 let gridsize = 16;
 let grid_arr = [];
+let rainbow_arr = [];
 let rainbow = false;
+let eraser = false;
+
+
+let toggleEraser = () =>{
+    eraser = !eraser;
+    console.log(eraser);
+    return;
+}
 
 let toggleRainbow = () =>{
     rainbow = !rainbow;
-    console.log(rainbow);
+    if(rainbow){
+        rainbow_arr = ["red", "blue", "yellow", "purple", "green", "orange", "indigo", "turquoise"];
+        return;
+    }
+    rainbow_arr = [];
+    return;
 }
 
 function fill(e){
+    if(eraser){
+        this.classList.remove("fill");
+        this.style.backgroundColor = "white";
+        return;
+    }
     this.classList.add("fill")
     if(rainbow){
-        this.style.backgroundColor = "#" + Math.floor(Math.random()*0xFFFFFF).toString(16);
+        //this.style.backgroundColor = "#" + Math.floor(Math.random()*0xFFFFFF).toString(16);
+        this.style.backgroundColor = rainbow_arr[Math.floor(Math.random() * 8)];
         return;
     }
     this.style.backgroundColor = brush;
+    return;
 }
 
 function changeGridSize(e){
     let slider_label = document.querySelector("#slider-label");
     slider_label.textContent = `${this.value} x ${this.value}`;
     gridsize = this.value;
+    return;
 }
 
 function changeColor(e){
     brush = this.value;
+    return;
 }
 
 //I have to remove all child nodes from .square-container. 2-14-2023
@@ -43,7 +66,7 @@ function removeAllSquares(p){
 }
 
 function initializeGrid(){
-    console.log("Fish");
+    console.log("Fish!");
     grid_arr = [];
     for(let i = 0; i < gridsize * gridsize; i++){
         grid_arr.push(document.createElement('div'));
@@ -62,12 +85,11 @@ function initializeGrid(){
     grid_arr.forEach(box => {
         box.addEventListener('mouseover', fill);
     })
-
+    return;
 }
 
 
 initializeGrid();
-
 
 
 let grid_slider = document.querySelector(".grid-slider");
@@ -82,4 +104,7 @@ color_picker.addEventListener("change", changeColor);
 
 let rainbtn = document.querySelector("#rainbtn");
 rainbtn.addEventListener('click', toggleRainbow);
+
+let erasebtn = document.querySelector("#eraser");
+erasebtn.addEventListener('click', toggleEraser);
 
