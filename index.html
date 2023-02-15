@@ -12,10 +12,20 @@
             <div class="toolbox">
                 <!--Range controls, color picker, etc-->
                 <div class="slider-container">
-                    <h3 class="slider-label">16x16</h3>
-                    <input type="range" max="100" min="1" value="16" class="grid-slider">
+                    <h3 class="tool-label" id="slider-label">16x16</h3>
+                    <input type="range" max="100" min="2" value="16" class="grid-slider">
                     <input type="button" id="grid-change" value="Apply New Grid"></input>
                 </div>
+
+                <div class="slider-container">
+                    <h3 class="tool-label">Color Picker</h3>
+                    <input type="color" id="color-picker" value="#000000">
+                </div>
+
+                <div class="misc-btn-container">
+                    <input type="button" value="rainbow" id="rainbtn">
+                </div>
+
             </div>
         </div>
         

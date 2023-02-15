@@ -6,15 +6,30 @@
 
 let gridsize = 16;
 let grid_arr = [];
+let rainbow = false;
+
+let toggleRainbow = () =>{
+    rainbow = !rainbow;
+    console.log(rainbow);
+}
 
 function fill(e){
-    this.classList.add("fill");
+    this.classList.add("fill")
+    if(rainbow){
+        this.style.backgroundColor = "#" + Math.floor(Math.random()*0xFFFFFF).toString(16);
+        return;
+    }
+    this.style.backgroundColor = brush;
 }
 
 function changeGridSize(e){
-    let slider_label = document.querySelector(".slider-label");
+    let slider_label = document.querySelector("#slider-label");
     slider_label.textContent = `${this.value} x ${this.value}`;
     gridsize = this.value;
+}
+
+function changeColor(e){
+    brush = this.value;
 }
 
 //I have to remove all child nodes from .square-container. 2-14-2023
@@ -56,10 +71,15 @@ initializeGrid();
 
 
 let grid_slider = document.querySelector(".grid-slider");
-
 grid_slider.addEventListener("input", changeGridSize);
 
 let apply_btn = document.querySelector("#grid-change");
-
 apply_btn.addEventListener('click', initializeGrid);
+
+let color_picker = document.querySelector("#color-picker");
+let brush = color_picker.value;
+color_picker.addEventListener("change", changeColor);
+
+let rainbtn = document.querySelector("#rainbtn");
+rainbtn.addEventListener('click', toggleRainbow);
 
