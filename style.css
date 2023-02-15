@@ -33,7 +33,7 @@ body{
 .tool-container h2 {
     font-size: 32px;
     color: azure;
-    margin-bottom: 0;
+    margin-bottom: 0px;
 }
 
 .toolbox {
@@ -50,6 +50,15 @@ body{
 .slider-container{
     text-align: center;
     display: block;
+}
+
+.misc-btn-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding-top: 24px;
 }
 
 .square-container{

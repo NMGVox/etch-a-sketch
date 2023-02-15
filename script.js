@@ -154,4 +154,7 @@ erasebtn.addEventListener('click', toggleEraser);
 let shaderbtn = document.querySelector("#shader");
 shaderbtn.addEventListener('click', toggleShader);
 
+let clearbtn = document.querySelector("#clear");
+clearbtn.addEventListener('click', initializeGrid);
+
 
