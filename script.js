@@ -16,36 +16,51 @@ let container = document.querySelector('.square-container');
 
 let toggleShader = () =>{
     shader = !shader;
-    if(rainbow){rainbow = false;}
-    console.log(shader);
+    if(rainbow){
+        rainbow = false;
+        rainbtn.classList.remove("active");
+    }
+    
+    if(shader) {
+        shaderbtn.classList.add("active");
+    }
+    else{
+        shaderbtn.classList.remove("active");
+    }
     return;
 }
 
 let toggleEraser = () =>{
     eraser = !eraser;
-    console.log(eraser);
+    if(eraser){
+        erasebtn.classList.add("active");
+    }
+    else {erasebtn.classList.remove("active");}
     return;
 }
 
 let disablePen = () => {
     pen = false;
-    console.log(pen);
     return;
 }
 
 let activatePen = () => {
     pen = true;
-    console.log(pen);
     return;
 }
 
 let toggleRainbow = () =>{
     rainbow = !rainbow;
     if(rainbow){
-        if(shader) {shader = false;}
+        if(shader) {
+            shader = false;
+            shaderbtn.classList.remove("active");
+        }
         rainbow_arr = ["red", "blue", "yellow", "purple", "green", "orange", "indigo", "turquoise"];
+        rainbtn.classList.add("active");
         return;
     }
+    rainbtn.classList.remove("active")
     rainbow_arr = [];
     return;
 }
@@ -107,7 +122,6 @@ function removeAllSquares(p){
 }
 
 function initializeGrid(){
-    console.log("Fish!");
     grid_arr = [];
     for(let i = 0; i < gridsize * gridsize; i++){
         grid_arr.push(document.createElement('div'));
@@ -125,7 +139,7 @@ function initializeGrid(){
 
     grid_arr.forEach(box => {
         box.addEventListener('mouseover', fill);
-    })
+    });
     return;
 }
 

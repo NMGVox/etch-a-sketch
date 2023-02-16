@@ -6,6 +6,7 @@
     <title>Vox Retro Paint</title>
 </head>
 <body>
+    <h1 class="header-text">~Vox Retro Painter~</h1>
     <section class="main-container">
         <div class = "tool-container">
             <h2>Tools</h2>
@@ -13,8 +14,8 @@
                 <!--Range controls, color picker, etc-->
                 <div class="slider-container">
                     <h3 class="tool-label" id="slider-label">16x16</h3>
-                    <input type="range" max="100" min="2" value="16" class="grid-slider">
-                    <input type="button" id="grid-change" value="Apply New Grid"></input>
+                    <input type="range" max="60" min="2" value="16" class="grid-slider">
+                    <input type="button" id="grid-change" value="Apply New Grid" class="misc-btn"></input>
                 </div>
 
                 <div class="slider-container">
@@ -34,6 +35,11 @@
         <section class="square-container">
             <div></div>
         </section>
+    </section>
+
+    <section class="footer">
+        <h2 class = "foot-text">Created and Designed by ~ NMGVox 2023</h2>
+        <a href="https://github.com/NMGVox"><img class="github-link" src="./images/github-mark.svg" ></a>
     </section>
     <script src="./script.js"></script>
 </body>

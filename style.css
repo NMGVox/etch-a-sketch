@@ -1,26 +1,39 @@
 body{
     display:flex;
+    flex-direction: column;
     height:100vh;
     width:100vw;
     padding: 0%;
     margin: 0px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    background-color: #0D1526;
+}
+
+.header-text {
+    background:-webkit-linear-gradient(left, #F15025, #e76082);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #e76082;
+    font-size: 48px;
+    margin-bottom: 12px;
 }
 
 .main-container{
     display:flex;
+    flex: 0 0 auto;
     justify-content: center;
     align-items: center;
     width:60vw;
     height:80vh;
-    background-color: rgba(114, 86, 86, 0.582);
+    background-color: #6B818C;
     gap: 48px;
     border-radius: 48px;
 }
 
 .tool-container{
-    background-color: rgba(250, 235, 215, 0.603);
+    background-color: #ffffff;
     height: 600px;
     width: 250px;
     display: flex;
@@ -32,8 +45,8 @@ body{
 
 .tool-container h2 {
     font-size: 32px;
-    color: azure;
-    margin-bottom: 0px;
+    color: #6B818C;
+    margin-bottom: 12px;
 }
 
 .toolbox {
@@ -43,8 +56,15 @@ body{
     display:flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(240, 248, 255, 0.801);
+    justify-content: space-around;
+    background-color: #6B818C;
     border-radius: 24px;
+    margin-bottom: 16px;
+}
+
+.tool-label {
+    margin: 8px auto;
+    color:white;
 }
 
 .slider-container{
@@ -55,10 +75,32 @@ body{
 .misc-btn-container{
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     gap: 12px;
     padding-top: 24px;
+}
+
+.misc-btn{
+    font-weight: bold;
+    padding: 12px 20px;
+    border-style: ridge;
+    border-radius: 8px;
+}
+
+#rainbtn.misc-btn.active{
+    background: linear-gradient( purple, red, blue);
+    border-color: white;
+    color: rgba(255, 255, 255, 0.664);
+}
+
+#eraser.misc-btn.active{
+    background: linear-gradient(rgb(250, 148, 165), lightpink);
+    color:aliceblue;
+}
+
+#shader.misc-btn.active{
+    background: linear-gradient(lightgrey, gray, black) ;
 }
 
 .square-container{
@@ -70,15 +112,17 @@ body{
     justify-content: center;
     align-items: center;
     flex: 0 0 auto;
+    border-style: solid;
+    border-color: #CED0CE;
 }
 
 .paint-square{
-    border-color: black;
+    border-color: rgba(0, 0, 0, 0.397);
     background-color: white;
     height: calc(600px / 16);
     width: calc(600px / 16);
     border-style: solid;
-    border-width: 1px;
+    border-width: .5px;
     margin:0px;
     padding:0px;
     box-sizing: border-box;
@@ -89,3 +133,25 @@ body{
     border-style: none;
 }
 
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #CED0CE;
+    width: 100vw;
+    height: 50px;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+}
+
+.foot-text{
+    text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.281);
+    font-size: 24px;
+    color: #0D1526;
+}
+
+.github-link{
+    height: 20px;
+    width: 20px;
+    margin: 6px 8px;
+}
