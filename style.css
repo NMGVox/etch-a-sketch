@@ -16,37 +16,37 @@ body{
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #e76082;
-    font-size: 48px;
-    margin-bottom: 12px;
+    font-size: 6vh;
+    margin-bottom: 1vh;
 }
 
 .main-container{
     display:flex;
     flex: 0 0 auto;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width:60vw;
+    width:50vw;
     height:80vh;
     background-color: #6B818C;
-    gap: 48px;
-    border-radius: 48px;
+    border-radius: 2vw;
 }
 
 .tool-container{
     background-color: #ffffff;
-    height: 600px;
-    width: 250px;
+    height: 90%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 5%;
     align-items: center;
-    border-radius: 32px;
+    border-radius: 2vw;
 }
 
 .tool-container h2 {
-    font-size: 32px;
+    font-size: 3.5vh;
     color: #6B818C;
-    margin-bottom: 12px;
+    margin-bottom: 3%;
 }
 
 .toolbox {
@@ -58,20 +58,20 @@ body{
     align-items: center;
     justify-content: space-evenly;
     background-color: #6B818C;
-    border-radius: 24px;
-    margin-bottom: 16px;
+    border-radius: 1.2vw;
+    margin-bottom: 5%;
 }
 
 .tool-label {
     margin: 8px auto;
     color:white;
-    font-size: 24px;
+    font-size: 2.2vh;
 }
 
 .tool-label.gs {
     margin: 8px auto;
     color:white;
-    font-size: 16px;
+    font-size: 2.4vh;
 }
 
 .slider-container{
@@ -79,20 +79,29 @@ body{
     display: block;
 }
 
+.color-box{
+    height: 4vh;
+    width: 4vw;
+    padding: .2vh .2vw;
+}
+
 .misc-btn-container{
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    gap: 12px;
-    padding-top: 24px;
+    gap: 1vh;
 }
 
 .misc-btn{
     font-weight: bold;
-    padding: 12px 20px;
+    height: 5vh;
+    width: 7vw;
+    padding: 1.34vh .5vw;
     border-style: ridge;
-    border-radius: 8px;
+    border-radius: 0.41vw;
+    text-align: center;
+    font-size: 1.5vh;
 }
 
 #rainbtn.misc-btn.active{
@@ -125,6 +134,7 @@ body{
     flex: 0 0 auto;
     border-style: solid;
     border-color: #CED0CE;
+    margin-right: 5%;
 }
 
 .paint-square{
@@ -150,19 +160,19 @@ body{
     justify-content: center;
     background-color: #CED0CE;
     width: 100vw;
-    height: 50px;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px;
+    height: 5vh;
+    border-top-right-radius: 2vw;
+    border-top-left-radius: 2vw;
 }
 
 .foot-text{
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.281);
-    font-size: 24px;
+    font-size: 2.5vh;
     color: #0D1526;
 }
 
 .github-link{
-    height: 20px;
-    width: 20px;
-    margin: 6px 8px;
+    height: 2.5vh;
+    width: auto;
+    margin: .2vh .5vw;
 }
