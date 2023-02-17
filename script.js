@@ -66,7 +66,6 @@ let toggleRainbow = () =>{
 }
 
 function fill(e){
-    //console.log(this.style.backgroundColor.substr(0, 14));
     if(pen){
         if(eraser){
             this.classList.remove("fill");
@@ -96,6 +95,7 @@ function fill(e){
         }
         this.style.backgroundColor = brush;
     }
+    e.preventDefault();
     return;
 }
 
@@ -134,10 +134,12 @@ function initializeGrid(){
     grid_arr.forEach(element => {
         element.style.height=`${dimension}px`;
         element.style.width=`${dimension}px`;
+        element.setAttribute(ondragstart, false);
         container.appendChild(element);
     });
 
     grid_arr.forEach(box => {
+        box.addEventListener('mousedown', fill);
         box.addEventListener('mouseover', fill);
     });
     return;
@@ -146,7 +148,7 @@ function initializeGrid(){
 
 initializeGrid();
 
-container.addEventListener('mousedown', activatePen); 
+container.addEventListener('mousedown', activatePen, true); 
 window.addEventListener('mouseup', disablePen);
 
 let grid_slider = document.querySelector(".grid-slider");
