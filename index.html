@@ -13,6 +13,7 @@
             <div class="toolbox">
                 <!--Range controls, color picker, etc-->
                 <div class="slider-container">
+                    <h3 class="tool-label gs">Grid Size</h3>
                     <h3 class="tool-label" id="slider-label">16x16</h3>
                     <input type="range" max="60" min="2" value="16" class="grid-slider">
                     <input type="button" id="grid-change" value="Apply New Grid" class="misc-btn"></input>
@@ -26,7 +27,8 @@
                 <div class="misc-btn-container">
                     <input type="button" value="Rainbow Mode" id="rainbtn" class="misc-btn">
                     <input type="button" value="Toggle Eraser" id="eraser" class="misc-btn">
-                    <input type="button" value="Toggle Shader" id="shader" class="misc-btn">
+                    <input type="button" value="Toggle Burn" id="shader" title="Darken square" class="misc-btn">
+                    <input type="button" value="Toggle Dodge" id="dodge" title="Lighten square" class="misc-btn">
                     <input type="button" value="Clear Canvas" id="clear" class="misc-btn">
                 </div>
             </div>

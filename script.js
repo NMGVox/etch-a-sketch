@@ -7,28 +7,63 @@
 
 let gridsize = 16;
 let grid_arr = [];
-let rainbow_arr = [];
+let rainbow_arr = ["red", "blue", "yellow", "purple", "green", "orange", "indigo"];
 let rainbow = false;
 let eraser = false;
 let shader = false;
+let dodge = false;
 let pen = false;
 let container = document.querySelector('.square-container');
 
+let toggleDodge = () =>{
+    dodge = !dodge;
+    if(dodge){
+        if(rainbow || shader){
+            rainbow = false;
+            shader = false;
+            rainbtn.classList.remove("active");
+            shaderbtn.classList.remove("active");
+        }
+        dodgebtn.classList.add("active");
+    }
+    else{
+        dodgebtn.classList.remove("active");
+    }
+};
+
 let toggleShader = () =>{
-    shader = !shader;
-    if(rainbow){
-        rainbow = false;
-        rainbtn.classList.remove("active");
-    }
-    
-    if(shader) {
+    shader = !shader;    
+    if(shader){
+        if(rainbow || dodge) {
+            rainbow = false;
+            dodge = false;
+            rainbtn.classList.remove("active");
+            dodgebtn.classList.remove("active");
+        }
         shaderbtn.classList.add("active");
-    }
+    } 
     else{
         shaderbtn.classList.remove("active");
     }
     return;
-}
+};
+
+let toggleRainbow = () =>{
+    rainbow = !rainbow;
+    if(rainbow){
+        if(shader || dodge) {
+            shader = false;
+            dodge = false;
+            shaderbtn.classList.remove("active");
+            dodgebtn.classList.remove("active");
+        }
+        rainbtn.classList.add("active");
+        return;
+    }
+    rainbtn.classList.remove("active")
+    rainbow_arr = [];
+    return;
+};
 
 let toggleEraser = () =>{
     eraser = !eraser;
@@ -37,55 +72,57 @@ let toggleEraser = () =>{
     }
     else {erasebtn.classList.remove("active");}
     return;
-}
+};
 
 let disablePen = () => {
     pen = false;
     return;
-}
+};
 
 let activatePen = () => {
     pen = true;
     return;
+};
+
+function lighten(c){
+    let rgb_arr = c.match(/\d+/g).map(Number);
+    for(let i = 0; i < rgb_arr.length; i++){
+        if(rgb_arr[i] < 255){
+            rgb_arr[i] += Math.floor(255 * .10); 
+        }
+        rgb_arr[i] > 255 ? rgb_arr[i] = 255: rgb_arr[i] = rgb_arr[i];
+    }
+    console.log(rgb_arr);
+    return(`rgb(${rgb_arr[0]}, ${rgb_arr[1]}, ${rgb_arr[2]})`);
 }
 
-let toggleRainbow = () =>{
-    rainbow = !rainbow;
-    if(rainbow){
-        if(shader) {
-            shader = false;
-            shaderbtn.classList.remove("active");
+function darken(c){
+    let rgb_arr = c.match(/\d+/g).map(Number);
+    for(let i = 0; i < rgb_arr.length; i++){
+        if(rgb_arr[i] > 0){
+            rgb_arr[i] -= Math.floor(255 * .10); 
         }
-        rainbow_arr = ["red", "blue", "yellow", "purple", "green", "orange", "indigo", "turquoise"];
-        rainbtn.classList.add("active");
-        return;
+        rgb_arr[i] < 0 ? rgb_arr[i] = 0: rgb_arr[i] = rgb_arr[i];
     }
-    rainbtn.classList.remove("active")
-    rainbow_arr = [];
-    return;
+    return(`rgb(${rgb_arr[0]}, ${rgb_arr[1]}, ${rgb_arr[2]})`);
 }
 
 function fill(e){
     if(pen){
+        e.preventDefault();
         if(eraser){
             this.classList.remove("fill");
-            this.style.backgroundColor = "white";
+            this.style.backgroundColor = "rgb(255, 255, 255)";
             return;
         }
-        //this.classList.add("fill")
+        if(dodge){
+            temp_col = getComputedStyle(this).getPropertyValue("background-color");
+            this.style.backgroundColor = lighten(temp_col);
+            return;
+        }
         if(shader){
-            if(this.style.backgroundColor.substr(this.style.backgroundColor.indexOf("("), 8) == "(0, 0, 0"){
-                let alpha = +(this.style.backgroundColor.substring(14, this.style.backgroundColor.length-1));
-                console.log(alpha);
-                if(alpha !== 1){
-                    this.style.backgroundColor = `rgba(0, 0, 0, ${alpha + 0.1})`;
-                    return;
-                }
-                console.log("?");
-            }
-            else{
-                this.style.backgroundColor = `rgba(0, 0, 0, .1)`;
-            }
+            temp_col = getComputedStyle(this).getPropertyValue("background-color");
+            this.style.backgroundColor = darken(temp_col);
             return;
         }
         if(rainbow){
@@ -95,7 +132,6 @@ function fill(e){
         }
         this.style.backgroundColor = brush;
     }
-    e.preventDefault();
     return;
 }
 
@@ -134,7 +170,6 @@ function initializeGrid(){
     grid_arr.forEach(element => {
         element.style.height=`${dimension}px`;
         element.style.width=`${dimension}px`;
-        element.setAttribute(ondragstart, false);
         container.appendChild(element);
     });
 
@@ -169,6 +204,9 @@ erasebtn.addEventListener('click', toggleEraser);
 
 let shaderbtn = document.querySelector("#shader");
 shaderbtn.addEventListener('click', toggleShader);
+
+let dodgebtn = document.querySelector("#dodge");
+dodgebtn.addEventListener('click', toggleDodge);
 
 let clearbtn = document.querySelector("#clear");
 clearbtn.addEventListener('click', initializeGrid);
