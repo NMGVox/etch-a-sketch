@@ -79,6 +79,47 @@ body{
     display: block;
 }
 
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background:transparent;
+    cursor: pointer;
+    border-radius: 3vw;
+    margin-bottom: 2vh;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-runnable-track {
+    background: rgba(255, 255, 255, 0.664);
+    height: .5vh;
+    width: 5vw;
+}
+  
+/******** Firefox ********/
+input[type="range"]::-moz-range-track {
+    background: rgba(255, 255, 255, 0.664);
+    height: .5vh;
+    width: 5vw;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -1.4vh; /* Centers thumb on the track */
+    background-color: #F15025;
+    height: 3.2vh;
+    width: 1rem;    
+    border-radius: 20px;
+ }
+
+ input[type="range"]::-moz-range-thumb {
+    border: none; /*Removes extra border that FF applies*/
+    border-radius: 20px; /*Removes default border-radius that FF applies*/
+    background-color: #F15025;
+    height: 3.2vh;
+    width: 1rem;
+}
+
 .color-box{
     height: 4vh;
     width: 4vw;
